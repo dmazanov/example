@@ -54,7 +54,7 @@ class BlockLayered extends Module
 
 	public function install()
 	{
-		if (parent::install() && $this->registerHook('header') && $this->registerHook('leftColumn')
+		if (parent::install() && $this->registerHook('header') && $this->registerHook('leftColumn') && $this->registerHook('displayTopColumn')
 		&& $this->registerHook('categoryAddition') && $this->registerHook('categoryUpdate') && $this->registerHook('attributeGroupForm')
 		&& $this->registerHook('afterSaveAttributeGroup') && $this->registerHook('afterDeleteAttributeGroup') && $this->registerHook('featureForm')
 		&& $this->registerHook('afterDeleteFeature') && $this->registerHook('afterSaveFeature') && $this->registerHook('categoryDeletion')
@@ -675,7 +675,15 @@ class BlockLayered extends Module
 	{
 		return $this->hookLeftColumn($params);
 	}
-
+	
+	
+	public function hookDisplayTopColumn($params)
+    {
+        return $this->generateFiltersBlock($this->getSelectedFilters());
+    }
+	
+	
+	
 	public function hookHeader($params)
 	{
 		if ((isset($this->context->controller->display_column_left) && !$this->context->controller->display_column_left)
