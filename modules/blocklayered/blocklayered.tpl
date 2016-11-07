@@ -72,7 +72,7 @@
 						{if isset($filter.slider)}
 							<div class="layered_{$filter.type}" style="display: none;">
 						{else}
-							<div class="layered_filter">
+							<div class="layered_filter col-lg-4">
 						{/if}
                         <div class="layered_subtitle_heading">
                             <span class="layered_subtitle">{$filter.name|escape:'html':'UTF-8'}</span>

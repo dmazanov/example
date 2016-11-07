@@ -97,8 +97,7 @@
 #layered_block_left .nomargin a {
   display: inline; }
 
-#layered_form .select {
-  width: 165px; }
+
 
 #layered_form .color-option {
   margin-left: 0;
@@ -161,7 +160,7 @@
   overflow-x: auto; }
 
 .layered_filter {
-  border-bottom: 1px solid #eee; }
+ }
   .layered_filter label {
     font-weight: normal; }
   .layered_filter layered_subtitle {
