@@ -193,7 +193,8 @@
                 {if isset($HOOK_CUSTOMER_IDENTITY_FORM)}
 			{$HOOK_CUSTOMER_IDENTITY_FORM}
 		{/if}
-                <div class="form-group">
+		<div style="display: flex;"><input type="checkbox" checked id="isAgeSelected"><label style="margin-left:5px; width:480px;" for="raz">Wyrażam zgodę na przetwarzanie moich danych osobowych przez BearWheels.pl. z siedzibą w Olsztyn, ul. ul. Jana Boenigka 21 lok. 37, 10-686 Olsztyn w celu założenia konta Klienta, obsługi i realizacji zamówień oraz obsługi i realizacji rezerwacji. Poinformowano mnie o prawie wglądu do treści moich danych osobowych oraz ich poprawiania.</label></div>
+                <div class="form-group" id="txtAge" >
                     <button type="submit" name="submitIdentity" class="btn btn-default button button-medium">
                         <span>{l s='Save'}<i class="icon-chevron-right right"></i></span>
                     </button>

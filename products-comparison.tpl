@@ -111,9 +111,7 @@
 								{/if}
 							{/if}
 						</div> <!-- end prices-container -->
-						<div class="product_desc">
-							{$product->description_short|strip_tags|truncate:60:'...'}
-						</div>
+					
 						<div class="comparison_product_infos">
 							<p class="comparison_availability_statut">
 								{if !(($product->quantity <= 0 && !$product->available_later) OR ($product->quantity != 0 && !$product->available_now) OR !$product->available_for_order OR $PS_CATALOG_MODE)}

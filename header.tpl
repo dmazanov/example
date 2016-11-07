@@ -63,7 +63,7 @@
 			{/foreach}
 		{/if}
 		{$HOOK_HEADER}
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,600&amp;subset=latin,latin-ext" type="text/css" media="all" />
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 		<!--[if IE 8]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -78,6 +78,7 @@
 		{/if}
 		<div id="page">
 			<div class="header-container">
+			
 				<header id="header">
 					{capture name='displayBanner'}{hook h='displayBanner'}{/capture}
 					{if $smarty.capture.displayBanner}
@@ -89,7 +90,7 @@
 							</div>
 						</div>
 					{/if}
-					{capture name='displayNav'}{hook h='displayNav'}{/capture}
+					{capture name='displayNav'}{/capture}
 					{if $smarty.capture.displayNav}
 						<div class="nav">
 							<div class="container">
@@ -101,20 +102,108 @@
 					{/if}
 					<div>
 						<div class="container">
+							
 							<div class="row">
 								<div id="header_logo">
 									<a href="{if isset($force_ssl) && $force_ssl}{$base_dir_ssl}{else}{$base_dir}{/if}" title="{$shop_name|escape:'html':'UTF-8'}">
-										<img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
+										<img class="logo img-responsive logo_desc" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
+									 <img class="logo_tel" src="../img/logo.png"/>
 									</a>
 								</div>
-								{if isset($HOOK_TOP)}{$HOOK_TOP}{/if}
+								{if isset($HOOK_TOP)}
+								<div class="col-lg-6" style="float: right;margin-top:15px;">
+								<div class="telephone col-lg-4"><div style="    display: inline-block;"><p class="telephone_text" style="font-size:11px;"><a data-rel="external" href="tel:+48794922852">+48 794 922 852</a></p><p style="font-size:13px;"><a href="mailto:info@bearwheels.pl" target="_top">info@bearwheels.pl</a></p></div></div>
+								<div class="carte col-lg-4">{hook h='displayTop' mod='blockcart'}</div>
+								<div class="logine col-lg-4">{hook h='displayNav' mod='blockuserinfo'}</div>
+								
+							
+								</div>{hook h='displayTop' mod='blocktopmenu'}{/if}
 							</div>
 						</div>
 					</div>
+					
 				</header>
+				
 			</div>
+
+			{if $page_name =='index'}
+			<div id="baner">
+				<div class="container">
+					<div class="col-lg-6">
+										<h1 class="home-heading">your style</br>
+										<div class="sub">our passion</div></h1>
+										<p>Lorem ipsum dolor sit amet, consectetur  elit.</p><p>Sed ultrices vestibulum purus, ac ornare diam ornare ut.</p>
+										
+					</div>
+						
+					<div class="col-lg-4" style="  ">
+		{if isset($home_filter)}{$home_filter}{/if}
+										
+					</div>
+					
+				</div>
+			</div>
+			<div id="sec-block">
+				<div class="container">
+					<div class="col-lg-7"></div>
+					
+					<div class="col-lg-5">
+										<h2 class="home-heading">Bear Wheels</br>
+										<div class="sub">to dzieło życia</div></h2>
+										<p>Zamieniliśmy życiową pasje we dzieło życia. Kochamy to co robimy.</p>
+										<p>Niezawodność, potęga i niesamowity wygląd to jest to, co my </p>
+										<p>wybraliśmy i chcemy proponować innym.</p>
+										<p>Serdecznie zapraszamy do rodziny BearWhells!</p>
+										<div class="btn-action"><a  href="/3-dobierz-felgi" rel="nofollow" title="Zacząć">
+											<span>zacząć</span>
+										</a></div>
+					</div>
+				</div>
+			</div>
+			<div id="third-block">
+				<div class="container">
+					<div class="col-lg-7">
+										<h2 class="home-heading">Dla czego</br>
+										<div class="sub">Kute felgi</div></h2>
+										<ul> 
+											  <li>Są o 150%-200% mocniejsze od zwykłych felg aluminiowych</li>
+											  <li>W 3-4 razy trwalsze, dzięki większej odporności na ścieranie metalu</li>
+											  <li>O 30% lżejsze, ze względu na wysoką dokładność obróbki i włóknista konstrukcje metalu</li>
+											  <li>Mniejsze zużycie paliwa (każdy dodatkowy kilogram na felgach to 50 kg ładunku)</li>
+											  <li>Bezpieczeństwo (Kuta felga nie pęknie przy trafieniu do dziury lub krawężnik, nawet przy 
+											  ruchu bez opony kuta felga zostanie cala)</li>
+										</ul>
+										<div class="btn-action"><a  href="/content/3-dlaczego-kute" rel="nofollow" title="więcej">
+											<span>więcej</span>
+										</a></div>
+					</div>
+					
+					<div class="col-lg-5"><div class="videoWrapper">
+    <!-- Copy & Pasted from YouTube -->
+    <iframe width="560" height="349" src="https://www.youtube.com/embed/oHg5SJYRHA0?autoplay=1" frameborder="0" allowfullscreen></iframe>
+</div></div>
+ 
+				</div>
+			</div>
+			<div id="four-block">
+				<div class="container">
+					<div class="four col-lg-6"></div>
+					
+					<div class="col-lg-6">
+										<h2 class="home-heading">Zamówienie</br>
+										<div class="sub">indywidualne</div></h2>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis, est posuere auctor malesuada, lectus risus ornare est, eu mollis lectus tellus ac felis. Mauris nisl mi, blandit nec semper eu, facilisis vitae tellus. Morbi facilisis, ligula quis porttitor ullamcorper, lectus sem dapibus turpis, a consequat ligula diam ac eros.
+Donec commodo mi tempus leo maximus, nec pretium mi sodales. </p>
+										<div class="btn-action"><a  href="/kontakt" rel="nofollow" title="złożyć zamówienie">
+											<span>złożyć zamówienie</span>
+										</a></div>
+					</div>
+				</div>
+			</div>
+			{/if}
 			<div class="columns-container">
 				<div id="columns" class="container">
+				<div style="    position: absolute;opacity: 0;">{if isset($HOOK_TOP)}{$HOOK_TOP}{/if}</div>
 					{if $page_name !='index' && $page_name !='pagenotfound'}
 						{include file="$tpl_dir./breadcrumb.tpl"}
 					{/if}
@@ -126,7 +215,9 @@
 					</div>
 					<div class="row">
 						{if isset($left_column_size) && !empty($left_column_size)}
-						<div id="left_column" class="column col-xs-12 col-sm-{$left_column_size|intval}">{$HOOK_LEFT_COLUMN}</div>
+						<div id="left_column" class="column col-xs-12 col-sm-{$left_column_size|intval}">{hook h="displayLeftColumn" mod='blockcategories'} <a href="#">
+										<img  src="../img/baner.jpg" alt=""/>
+									</a></div>
 						{/if}
 						{if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}
 						<div id="center_column" class="center_column col-xs-12 col-sm-{$cols|intval}">

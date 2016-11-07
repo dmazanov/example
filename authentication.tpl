@@ -659,11 +659,12 @@
 			</div>
 		{/if}
 		{$HOOK_CREATE_ACCOUNT_FORM}
-		<div class="submit clearfix">
+	
+		<div class="submit clearfix"  > 
 			<input type="hidden" name="email_create" value="1" />
 			<input type="hidden" name="is_new_customer" value="1" />
 			{if isset($back)}<input type="hidden" class="hidden" name="back" value="{$back|escape:'html':'UTF-8'}" />{/if}
-			<button type="submit" name="submitAccount" id="submitAccount" class="btn btn-default button button-medium">
+			<button  type="submit" name="submitAccount" id="submitAccount" class="btn btn-default button button-medium">
 				<span>{l s='Register'}<i class="icon-chevron-right right"></i></span>
 			</button>
 			<p class="pull-right required"><span><sup>*</sup>{l s='Required field'}</span></p>

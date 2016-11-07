@@ -37,8 +37,11 @@
 		</div>
 	{/if}
 	<div class="rte{if $content_only} content_only{/if}">
+	
 		{$cms->content}
+			<!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_inline_share_toolbox" style="padding-top:25px;"></div>
 	</div>
+	
 {elseif isset($cms_category)}
 	<div class="block-cms">
 		<h1><a href="{if $cms_category->id eq 1}{$base_dir}{else}{$link->getCMSCategoryLink($cms_category->id, $cms_category->link_rewrite)}{/if}">{$cms_category->name|escape:'html':'UTF-8'}</a></h1>
@@ -65,6 +68,7 @@
 				{/foreach}
 			</ul>
 		{/if}
+		
 	</div>
 {else}
 	<div class="alert alert-danger">

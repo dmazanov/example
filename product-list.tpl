@@ -22,6 +22,7 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
+
 {if isset($products) && $products}
 	{*define number of products per line in other page for desktop*}
 	{if $page_name !='index' && $page_name !='product'}
@@ -60,41 +61,22 @@
 							</a>
 						</div>
 						<a class="quick-view" href="{$product.link|escape:'html':'UTF-8'}" rel="{$product.link|escape:'html':'UTF-8'}">
-							<span>{l s='Quick view'}</span>
+					
 						</a>
 						{/if}
 						{if (!$PS_CATALOG_MODE && ((isset($product.show_price) && $product.show_price) || (isset($product.available_for_order) && $product.available_for_order)))}
 							<div class="content_price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-								{if isset($product.show_price) && $product.show_price && !isset($restricted_country_mode)}
-									<span itemprop="price" class="price product-price">
-										{hook h="displayProductPriceBlock" product=$product type="before_price"}
-										{if !$priceDisplay}{convertPrice price=$product.price}{else}{convertPrice price=$product.price_tax_exc}{/if}
-									</span>
-									<meta itemprop="priceCurrency" content="{$currency->iso_code}" />
-									{if $product.price_without_reduction > 0 && isset($product.specific_prices) && $product.specific_prices && isset($product.specific_prices.reduction) && $product.specific_prices.reduction > 0}
-										{hook h="displayProductPriceBlock" product=$product type="old_price"}
-										<span class="old-price product-price">
-											{displayWtPrice p=$product.price_without_reduction}
-										</span>
-										{if $product.specific_prices.reduction_type == 'percentage'}
-											<span class="price-percent-reduction">-{$product.specific_prices.reduction * 100}%</span>
-										{/if}
+							{if $page_name != 'index'}
+								<div class="functional-buttons clearfix">
+									{hook h='displayProductListFunctionalButtons' product=$product}
+									{if isset($comparator_max_item) && $comparator_max_item}
+										<div class="compare">
+											<a class="add_to_compare" href="{$product.link|escape:'html':'UTF-8'}" data-id-product="{$product.id_product}">{l s='Add to Compare'}</a>
+										</div>
 									{/if}
-									{if $PS_STOCK_MANAGEMENT && isset($product.available_for_order) && $product.available_for_order && !isset($restricted_country_mode)}
-										<span class="unvisible">
-											{if ($product.allow_oosp || $product.quantity > 0)}
-													<link itemprop="availability" href="https://schema.org/InStock" />{if $product.quantity <= 0}{if $product.allow_oosp}{if isset($product.available_later) && $product.available_later}{$product.available_later}{else}{l s='In Stock'}{/if}{/if}{else}{if isset($product.available_now) && $product.available_now}{$product.available_now}{else}{l s='In Stock'}{/if}{/if}
-											{elseif (isset($product.quantity_all_versions) && $product.quantity_all_versions > 0)}
-													<link itemprop="availability" href="https://schema.org/LimitedAvailability" />{l s='Product available with different options'}
-
-											{else}
-													<link itemprop="availability" href="https://schema.org/OutOfStock" />{l s='Out of stock'}
-											{/if}
-										</span>
-									{/if}
-									{hook h="displayProductPriceBlock" product=$product type="price"}
-									{hook h="displayProductPriceBlock" product=$product type="unit_price"}
-								{/if}
+								</div>
+							{/if}
+								
 							</div>
 						{/if}
 						{if isset($product.new) && $product.new == 1}
@@ -124,26 +106,26 @@
 						{hook h='displayProductListReviews' product=$product}
 						</div>
 					{/if}
-					<p class="product-desc" itemprop="description">
-						{$product.description_short|strip_tags:'UTF-8'|truncate:360:'...'}
-					</p>
+					
 					{if (!$PS_CATALOG_MODE AND ((isset($product.show_price) && $product.show_price) || (isset($product.available_for_order) && $product.available_for_order)))}
 					<div class="content_price">
+					     <span style="color:#b9b9b9;font-size:16px;float: left;margin-left: 20px;line-height: 25px;">{l s="Cena od:"}</span>
 						{if isset($product.show_price) && $product.show_price && !isset($restricted_country_mode)}
 							{hook h="displayProductPriceBlock" product=$product type='before_price'}
-							<span class="price product-price">
-								{if !$priceDisplay}{convertPrice price=$product.price}{else}{convertPrice price=$product.price_tax_exc}{/if}
-							</span>
 							{if $product.price_without_reduction > 0 && isset($product.specific_prices) && $product.specific_prices && isset($product.specific_prices.reduction) && $product.specific_prices.reduction > 0}
 								{hook h="displayProductPriceBlock" product=$product type="old_price"}
+								{hook h="displayProductPriceBlock" id_product=$product.id_product type="old_price"}
 								<span class="old-price product-price">
 									{displayWtPrice p=$product.price_without_reduction}
-								</span>
-								{hook h="displayProductPriceBlock" id_product=$product.id_product type="old_price"}
-								{if $product.specific_prices.reduction_type == 'percentage'}
-									<span class="price-percent-reduction">-{$product.specific_prices.reduction * 100}%</span>
-								{/if}
+							</span>
 							{/if}
+							
+							<span class="price product-price">
+								{if !$priceDisplay}{$product.price}{else}{$product.price_tax_exc}{/if}
+							</span>
+							
+							
+							
 							{hook h="displayProductPriceBlock" product=$product type="price"}
 							{hook h="displayProductPriceBlock" product=$product type="unit_price"}
 							{hook h="displayProductPriceBlock" product=$product type='after_price'}
@@ -166,51 +148,13 @@
 						<a class="button lnk_view btn btn-default" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
 							<span>{if (isset($product.customization_required) && $product.customization_required)}{l s='Customize'}{else}{l s='More'}{/if}</span>
 						</a>
+						
 					</div>
-					{if isset($product.color_list)}
-						<div class="color-list-container">{$product.color_list}</div>
-					{/if}
-					<div class="product-flags">
-						{if (!$PS_CATALOG_MODE AND ((isset($product.show_price) && $product.show_price) || (isset($product.available_for_order) && $product.available_for_order)))}
-							{if isset($product.online_only) && $product.online_only}
-								<span class="online_only">{l s='Online only'}</span>
-							{/if}
-						{/if}
-						{if isset($product.on_sale) && $product.on_sale && isset($product.show_price) && $product.show_price && !$PS_CATALOG_MODE}
-							{elseif isset($product.reduction) && $product.reduction && isset($product.show_price) && $product.show_price && !$PS_CATALOG_MODE}
-								<span class="discount">{l s='Reduced price!'}</span>
-							{/if}
-					</div>
-					{if (!$PS_CATALOG_MODE && $PS_STOCK_MANAGEMENT && ((isset($product.show_price) && $product.show_price) || (isset($product.available_for_order) && $product.available_for_order)))}
-						{if isset($product.available_for_order) && $product.available_for_order && !isset($restricted_country_mode)}
-							<span class="availability">
-								{if ($product.allow_oosp || $product.quantity > 0)}
-									<span class="{if $product.quantity <= 0 && isset($product.allow_oosp) && !$product.allow_oosp} label-danger{elseif $product.quantity <= 0} label-warning{else} label-success{/if}">
-										{if $product.quantity <= 0}{if $product.allow_oosp}{if isset($product.available_later) && $product.available_later}{$product.available_later}{else}{l s='In Stock'}{/if}{else}{l s='Out of stock'}{/if}{else}{if isset($product.available_now) && $product.available_now}{$product.available_now}{else}{l s='In Stock'}{/if}{/if}
-									</span>
-								{elseif (isset($product.quantity_all_versions) && $product.quantity_all_versions > 0)}
-									<span class="label-warning">
-										{l s='Product available with different options'}
-									</span>
-								{else}
-									<span class="label-danger">
-										{l s='Out of stock'}
-									</span>
-								{/if}
-							</span>
-						{/if}
-					{/if}
+					
+						
+					
 				</div>
-				{if $page_name != 'index'}
-					<div class="functional-buttons clearfix">
-						{hook h='displayProductListFunctionalButtons' product=$product}
-						{if isset($comparator_max_item) && $comparator_max_item}
-							<div class="compare">
-								<a class="add_to_compare" href="{$product.link|escape:'html':'UTF-8'}" data-id-product="{$product.id_product}">{l s='Add to Compare'}</a>
-							</div>
-						{/if}
-					</div>
-				{/if}
+				
 			</div><!-- .product-container> -->
 		</li>
 	{/foreach}
