@@ -1,0 +1,21 @@
+# Directories content
+/cache/
+cache/class_index.php
+cache/smarty/cache/*
+!cache/smarty/cache/index.php
+cache/smarty/compile/*
+!cache/smarty/compile/index.php
+cache/tcpdf/*
+!cache/tcpdf/index.php
+
+/img/*
+!img/index.php
+!img/*/index.php
+
+
+tools/smarty*/cache/*.php
+!tools/smarty*/cache/index.php
+tools/smarty*/compile/*.php
+!tools/smarty*/compile/index.php
+
+themes/*/cache/
